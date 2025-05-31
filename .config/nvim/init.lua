@@ -21,11 +21,6 @@ require('lazy').setup({
 	'tpope/vim-sleuth',
 
 	{
-		'eandrju/cellular-automaton.nvim',
-		lazy = true
-	},
-
-	{
 		'alanfortlink/blackjack.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		lazy = true,
