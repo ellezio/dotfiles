@@ -43,7 +43,7 @@ return {
 
 					nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 					nmap("<leader>ca", function()
-						vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } })
+						vim.lsp.buf.code_action({ context = { diagnostics = {}, only = { "quickfix", "refactor", "source" } } })
 					end, "[C]ode [A]ction")
 
 					local telescope_builtin = require("telescope.builtin")
@@ -54,8 +54,20 @@ return {
 					nmap("<leader>ds", telescope_builtin.lsp_document_symbols, "[D]ocument [S]ymbols")
 					nmap("<leader>ws", telescope_builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
-					nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-					nmap("<C-s>", vim.lsp.buf.signature_help, "Signature Documentation")
+					local hover_handler = function(args)
+						args = args or {}
+						args.border = "rounded"
+						vim.lsp.buf.hover(args)
+					end
+					nmap("K", hover_handler, "Hover Documentation")
+
+					local signature_help_handler = function(args)
+						args = args or {}
+						args.border = "rounded"
+						vim.lsp.buf.signature_help(args)
+					end
+					nmap("<C-s>", signature_help_handler, "Signature Documentation")
+					vim.keymap.set("i", "<C-s>", signature_help_handler, { buffer = ev.buf })
 
 					nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 					nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
@@ -118,14 +130,6 @@ return {
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = "rounded",
-			})
-
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-				border = "rounded",
-			})
 
 			vim.diagnostic.config({
 				float = {
