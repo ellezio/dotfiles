@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+nvidia-smi --lock-gpu-clocks=0,1695 --mode=1
+nvidia-smi --lock-memory-clocks=0,6001

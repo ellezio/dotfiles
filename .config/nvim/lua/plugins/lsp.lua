@@ -91,9 +91,11 @@ return {
 				templ = {},
 				tailwindcss = {},
 				html = {
-					filetypes = { "html", "gotmpl" },
+					filetypes = { "html", "gotmpl", "templ" },
 				},
-				-- htmx = {},
+				htmx = {
+					filetypes = { "html", "gotmpl", "templ" },
+				},
 				jsonls = {
 					settings = {
 						schemas = {

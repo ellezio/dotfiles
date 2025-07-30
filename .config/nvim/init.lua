@@ -1,46 +1,46 @@
-IsNixOS = vim.fn.executable('nixos-version') == 1
+IsNixOS = vim.fn.executable("nixos-version") == 1
 
-require('options')
-require('keymaps')
-require('autocmds')
+require("options")
+require("keymaps")
+require("autocmds")
 
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
-		'git',
-		'clone',
-		'--filter=blob:none',
-		'https://github.com/folke/lazy.nvim.git',
-		'--branch=stable',
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-	'tpope/vim-sleuth',
+require("lazy").setup({
+	"tpope/vim-sleuth",
 
 	{
-		'alanfortlink/blackjack.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim' },
+		"alanfortlink/blackjack.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
 		lazy = true,
 	},
 
 	{
-		'numToStr/Comment.nvim',
-		opts = {}
+		"numToStr/Comment.nvim",
+		opts = {},
 	},
 
 	{
 		-- Add indentation guides even on blank lines
-		'lukas-reineke/indent-blankline.nvim',
+		"lukas-reineke/indent-blankline.nvim",
 		-- Enable `lukas-reineke/indent-blankline.nvim`
 		-- See `:help ibl`
-		main = 'ibl',
+		main = "ibl",
 		opts = {},
 	},
 
-	{ import = 'plugins' },
+	{ import = "plugins" },
 })
 
-vim.cmd.colorscheme 'catppuccin'
+vim.cmd.colorscheme("catppuccin")
