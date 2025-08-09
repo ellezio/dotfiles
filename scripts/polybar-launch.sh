@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-killall -q .polybar-wrappe
+pkill -x .polybar-wrappe
 
 while pgrep -x .polybar-wrappe >/dev/null; do sleep 1; done
 
