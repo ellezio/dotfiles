@@ -182,4 +182,7 @@ no_focus [all]
 
 # exec_always --no-startup-id /nix/store/pw3lrnzvlm8kzp4ngdqv6dzy3jmq37bk-polybar-launch/bin/polybar-launch &
 
+exec_always --no-startup-id ~/dotfiles/scripts/polybar-launch.sh &
+exec --no-startup-id feh ~/nix-config/hosts/ellezio/wallpaper.png --bg-fill &
+
 # vim:ft=i3config:ts=4:sw=4:noet
