@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [[ "$1" == "up" ]]; then
+	brightnessctl set +5%
+elif [[ "$1" == "down" ]]; then
+	max=$(brightnessctl max)
+	sub=$(($(brightnessctl max)/20))
+	curr=$(brightnessctl get)
+
+	if [[ $sub -ge $curr ]]; then
+		brightnessctl set 1
+	else
+		brightnessctl set 5%-
+	fi
+fi

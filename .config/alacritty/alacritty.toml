@@ -1,5 +1,5 @@
-[font]
-size = 8
+[general]
+import = [ "host.toml" ]
 
 [font.normal]
 family = "FiraCode Nerd Font"

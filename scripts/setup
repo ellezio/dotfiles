@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+set -e
+
+dotfiles=$(pwd)
+dotconfig=$dotfiles/.config
+
+dotfiles_target=$HOME
+dotconfig_target=$dotfiles_target/.config
+
+echo "linking .config files to $dotconfig_target"
+configs=$(find $dotconfig -maxdepth 1 ! -name ".config")
+echo "$configs"
+ln -sf $configs $dotconfig_target
+
+echo ''
+echo "linking dotfiles to $dotfiles_target"
+home_files=$(find $dotfiles -maxdepth 1 ! -name ".config" ! -name "scripts" ! -name ".git" ! -name $(basename $dotfiles))
+echo "$home_files"
+ln -sf $home_files $dotfiles_target
+
+if [ -f $dotconfig/alacritty/$(hostname).toml ]; then
+	cp -f $dotconfig/alacritty/$(hostname).toml $dotconfig/alacritty/host.toml
+	touch $dotconfig/alacritty/alacritty.toml
+fi
