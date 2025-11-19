@@ -33,6 +33,8 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
+					vim.lsp.inlay_hint.enable(true)
+
 					local nmap = function(keys, func, desc)
 						if desc then
 							desc = "LSP: " .. desc
@@ -87,7 +89,17 @@ return {
 			local servers = {
 				nil_ls = {},
 				lua_ls = {},
-				gopls = {},
+				gopls = {
+					settings = {
+						gopls = {
+							["ui.inlayhint.hints"] = {
+								compositeLiteralFields = true,
+								constantValues = true,
+								parameterNames = true
+							},
+						}
+					}
+				},
 				templ = {},
 				tailwindcss = {},
 				html = {
