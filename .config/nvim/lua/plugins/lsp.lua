@@ -33,7 +33,7 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-					vim.lsp.inlay_hint.enable(true)
+					-- vim.lsp.inlay_hint.enable(true)
 
 					local nmap = function(keys, func, desc)
 						if desc then
@@ -84,22 +84,10 @@ return {
 				end,
 			})
 
-			local lspconfig = require("lspconfig")
-
 			local servers = {
 				nil_ls = {},
 				lua_ls = {},
-				gopls = {
-					settings = {
-						gopls = {
-							["ui.inlayhint.hints"] = {
-								compositeLiteralFields = true,
-								constantValues = true,
-								parameterNames = true
-							},
-						}
-					}
-				},
+				gopls = {},
 				templ = {},
 				tailwindcss = {},
 				html = {
@@ -122,7 +110,7 @@ return {
 				rust_analyzer = {},
 				clangd = {},
 				ts_ls = {
-					root_dir = lspconfig.util.root_pattern("package.json"),
+					root_marker = { "package.json" },
 					-- single_file_support = false,
 				},
 				-- denols = {
@@ -130,7 +118,6 @@ return {
 				-- },
 
 				intelephense = {
-					single_file_support = true,
 					settings = {
 						intelephense = {
 							environment = {
@@ -156,7 +143,8 @@ return {
 				for server_name, server in pairs(servers) do
 					server = server or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					lspconfig[server_name].setup(server)
+					vim.lsp.config(server_name, server)
+					vim.lsp.enable(server_name)
 				end
 			else
 				require("mason").setup()
@@ -167,7 +155,8 @@ return {
 						function(server_name)
 							local server = servers[server_name] or {}
 							server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-							lspconfig[server_name].setup(server)
+							vim.lsp.config(server_name, server)
+							vim.lsp.enable(server_name)
 						end,
 					},
 				})
