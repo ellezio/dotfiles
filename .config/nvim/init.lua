@@ -59,7 +59,9 @@ require("lazy").setup({
 	{ import = "plugins" },
 })
 
-vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("catppuccin")
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd.colorscheme("gruvbox")
 
 -- -- Set <space> as the leader key
 -- -- See `:help mapleader`

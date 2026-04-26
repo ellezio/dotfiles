@@ -1,4 +1,4 @@
-palette = "catppuccin_mocha"
+# palette = "catppuccin_mocha"
 
 [palettes.catppuccin_mocha]
 base = "#1e1e2e"

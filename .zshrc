@@ -34,4 +34,8 @@ bindkey '^ ' forward-word
 source <(fzf --zsh)
 source <(starship init zsh)
 
+export PATH="/home/pawellendzion/bin:$PATH"
+
+alias itinera="itinera -port 8765 -dsn ~/.itinera/database.db"
+
 eval "$(direnv hook zsh)"
