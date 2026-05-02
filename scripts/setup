@@ -15,7 +15,7 @@ ln -sf $configs $dotconfig_target
 
 echo ''
 echo "linking dotfiles to $dotfiles_target"
-home_files=$(find $dotfiles -maxdepth 1 ! -name ".config" ! -name "scripts" ! -name ".git" ! -name $(basename $dotfiles))
+home_files=$(find $dotfiles -maxdepth 1 ! -name ".config" ! -name "scripts" ! -name ".git" ! -name "wallpapers" ! -name $(basename $dotfiles))
 echo "$home_files"
 ln -sf $home_files $dotfiles_target
 

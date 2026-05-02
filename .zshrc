@@ -34,7 +34,7 @@ bindkey '^ ' forward-word
 source <(fzf --zsh)
 source <(starship init zsh)
 
-export PATH="/home/pawellendzion/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 alias itinera="itinera -port 8765 -dsn ~/.itinera/database.db"
 

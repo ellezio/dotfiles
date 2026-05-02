@@ -1,0 +1,125 @@
+icons_format = "{icon}"
+
+[theme]
+theme = "gruvbox-dark"
+[theme.overrides]
+separator = ""
+start_separator = ""
+end_separator = ""
+separator_bg = "#3c3836"
+
+[icons]
+icons = "awesome4"
+
+[[block]]
+block = "scratchpad"
+
+[[block]]
+block = "toggle"
+format = " $icon 2m "
+command_state = "xrandr | grep 'DP-1 connected 1080' | grep -v eDP-1"
+command_off = "~/.screenlayout/1m.sh"
+command_on = "~/.screenlayout/2m.sh"
+interval = 5
+state_on = "good"
+state_off = "warning"
+
+[[block]]
+block = "net"
+format = " $icon {$signal_strength $ssid} "
+format_alt = " $icon {$signal_strength $ssid $frequency|Wired connection} via $device "
+
+[[block]]
+block = "net"
+format = " $ip "
+format_alt = " $ipv6 "
+
+[[block]]
+block = "cpu"
+format = " $icon $utilization "
+format_alt = " $icon $utilization $barchart "
+
+[[block]]
+block = "memory"
+format_alt = " $icon_swap $swap_used.eng(prefix:Mi)/$swap_total.eng(prefix:Mi)($swap_used_percents.eng(w:2)) "
+
+[[block]]
+block = "disk_space"
+info_type = "used"
+warning = 90
+alert = 95
+format = " $icon $percentage "
+format_alt = " $icon $used/$total "
+
+[[block]]
+block = "music"
+format = "{ $icon $combo.str(max_w:20) $next |}"
+format_alt = " $volume_icon $volume $icon {$combo.str(max_w:20) $next |} "
+player = "spotify"
+[[block.click]]
+button = "left"
+action = "play_pause"
+[[block.click]]
+button = "right"
+widget = "."
+action = "toggle_format"
+[[block.click]]
+button = "up"
+action = "volume_up"
+[[block.click]]
+button = "down"
+action = "volume_down"
+
+[[block]]
+block = "bluetooth"
+mac = "80:C3:BA:9A:84:FB"
+disconnected_format = " $icon { $name |}"
+format = " $icon $percentage "
+
+[[block]]
+block = "sound"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+[[block]]
+block = "time"
+interval = 10
+format = " $timestamp.datetime(f:'%Y-%m-%d %R') "
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
+[[block]]
+block = "battery"
+format = " $icon $percentage {$time_remaining.dur(hms:true, min_unit:m) |}"
+full_format = " $icon $percentage "
+empty_format = " $icon $percentage "
+not_charging_format = " $icon $percentage "
+
+[[block]]
+block = "tea_timer"
+format = " $icon {$minutes:$seconds |} "
+done_cmd = "notify-send 'Timer Finished'"
+
+[[block]]
+block = "pomodoro"
+notify_cmd = "notify-send '{msg}'"
+blocking_cmd = false
+
+[[block]]
+block = "notify"
+format = " $icon {($notification_count.eng(w:1)) |}"
+[[block.click]]
+button = "up"
+action = "show"
+[[block.click]]
+button = "down"
+cmd = "dunstctl close"
+[[block.click]]
+button = "left"
+action = "show_all"
+[[block.click]]
+button = "right"
+action = "toggle_paused"
