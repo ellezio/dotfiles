@@ -15,16 +15,6 @@ icons = "awesome4"
 block = "scratchpad"
 
 [[block]]
-block = "toggle"
-format = " $icon 2m "
-command_state = "xrandr | grep 'DP-1 connected 1080' | grep -v eDP-1"
-command_off = "~/.screenlayout/1m.sh"
-command_on = "~/.screenlayout/2m.sh"
-interval = 5
-state_on = "good"
-state_off = "warning"
-
-[[block]]
 block = "net"
 format = " $icon {$signal_strength $ssid} "
 format_alt = " $icon {$signal_strength $ssid $frequency|Wired connection} via $device "

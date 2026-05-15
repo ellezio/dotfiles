@@ -1,4 +1,12 @@
 #! /usr/bin/env bash
 
-nvidia-smi --lock-gpu-clocks=0,1695 --mode=1
-nvidia-smi --lock-memory-clocks=0,6001
+if [ "$1" = "l" ]; then
+	nvidia-smi --lock-gpu-clocks=0,990 --mode=1
+	nvidia-smi --lock-memory-clocks=0,6001
+elif [ "$1" = "m" ]; then
+	nvidia-smi --lock-gpu-clocks=0,1695 --mode=1
+	nvidia-smi --lock-memory-clocks=0,6001
+elif [ "$1" = "r" ]; then
+	nvidia-smi --reset-gpu-clocks
+	nvidia-smi --reset-memory-clocks
+fi

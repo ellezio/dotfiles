@@ -55,5 +55,5 @@
 
 ### LSP
 [neovim/nvim-lspconfig]() - 
-[folke/neodev.nvim]() - 
+[folke/lazydev.nvim]() - 
 [folke/neoconf.nvim]() - 
